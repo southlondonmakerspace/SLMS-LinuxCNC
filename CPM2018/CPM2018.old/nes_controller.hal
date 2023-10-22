@@ -1,0 +1,33 @@
+loadrt near count=7
+loadrt mux2 count=3
+
+addf mux2.0 servo-thread
+addf mux2.1 servo-thread
+addf mux2.2 servo-thread
+addf near.0 servo-thread
+addf near.1 servo-thread
+addf near.2 servo-thread
+addf near.3 servo-thread
+addf near.4 servo-thread
+addf near.5 servo-thread
+addf near.6 servo-thread
+
+
+## use near for incremental jog moves, must push stick all the way for movement and to avoid unexpected movement by not
+## pushing stick straight, sensitivity can be adjusted
+setp near.0.in1 1
+setp near.1.in1 1
+setp near.2.in1 1
+setp near.3.in1 -1
+setp near.4.in1 -1
+setp near.5.in1 -1
+
+# set the speed
+setp halui.jog-speed 10
+
+setp mux2.0.in1 50
+setp mux2.1.in1 50
+setp mux2.2.in1 50
+
+net joy-x-sig mux2.0.in0 <= input.0.abs-x-position
+net joy-y-sig mux2.1.in0 <= input.0.abs-y-position
