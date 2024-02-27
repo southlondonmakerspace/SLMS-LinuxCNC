@@ -1,3 +1,5 @@
 # Include your custom_postgui HAL commands here
 # This file will not be overwritten when you run stepconf again
 
+# set up the rapid to home button
+net remote-rapid-to-home halui.mdi-command-00 <= pyvcp.rapid-to-home

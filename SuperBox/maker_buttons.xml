@@ -1,0 +1,7 @@
+ <pyvcp>
+ <button>
+     <halpin>"rapid-to-home"</halpin>
+     <text>"Touch Off X and Y to Werkpunkt"</text> 
+     <font>('Fixed',8)</font>
+ </button>
+ </pyvcp>  

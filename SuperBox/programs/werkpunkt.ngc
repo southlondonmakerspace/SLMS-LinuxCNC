@@ -1,0 +1,7 @@
+O <werkpunkt> sub
+
+G54
+G10 L2 P0 X113.69 Y242.21
+G0 X0 Y0
+
+O <werkpunkt> endsub
