@@ -8,7 +8,7 @@
 #
 
 #loadusr -W shuttle
-loadusr -W shuttle /dev/hidraw0
+loadusr -W shuttle /dev/ShuttleExpress
 
 loadrt abs_s32 names=abs_s32.sxp
 loadrt select8 names=select8.sxp-jog-speed,select8.sxp-jog-increment
