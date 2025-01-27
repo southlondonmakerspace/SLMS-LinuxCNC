@@ -1,0 +1,23 @@
+# Halshow settings
+# This file is generated automatically.
+wm geometry . 822x634+792+93
+placeFrames 0.3
+set ::ratio 0.3
+set ::old_w_leftf 160
+set ::watchlist {
+    pin+hm2_7i96s.0.pwmgen.01.enable
+    pin+hm2_7i96s.0.pwmgen.01.value
+    param+hm2_7i96s.0.pwmgen.pwm_frequency
+    pin+spindle.0.on
+    pin+spindle.0.locked
+    pin+hm2_7i96s.0.ssr.00.out-01
+    pin+hm2_7i96s.0.ssr.00.out-00
+    pin+spindle.0.speed-out
+}
+set ::workmode watchhal
+set ::watchInterval 100
+set ::col1_width 100
+set ::ffmts 
+set ::ifmts 
+set ::alwaysOnTop 0
+set ::autoSaveWatchlist 1
