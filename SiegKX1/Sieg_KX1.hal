@@ -11,6 +11,7 @@ setp    hm2_7i96s.0.pwmgen.pwm_frequency 16000
 setp    hm2_7i96s.0.pwmgen.pdm_frequency 6000000
 setp    hm2_7i96s.0.watchdog.timeout_ns 5000000
 loadrt pid names=pid.x,pid.y,pid.z,pid.s
+loadrt and2 count=2
 
 # THREADS
 addf hm2_7i96s.0.read         servo-thread
@@ -21,6 +22,8 @@ addf pid.y.do-pid-calcs       servo-thread
 addf pid.z.do-pid-calcs       servo-thread
 addf pid.s.do-pid-calcs       servo-thread
 addf hm2_7i96s.0.write        servo-thread
+addf and2.0					  servo-thread
+addf and2.1					  servo-thread
 
 # DPLL TIMER
 setp hm2_7i96s.0.dpll.01.timer-us -50
@@ -253,6 +256,7 @@ setp   pid.s.error-previous-target true
 setp   hm2_7i96s.0.pwmgen.01.output-type [SPINDLE_0](PWM_TYPE)
 setp   hm2_7i96s.0.pwmgen.pwm_frequency [SPINDLE_0](PWM_FREQUENCY)
 setp   hm2_7i96s.0.pwmgen.01.scale [SPINDLE_0]MAX_OUTPUT
+setp   hm2_7i96s.0.pwmgen.01.out0.invert_output true
 
 # Spindle Enable
 net spindle-on <= spindle.0.on
@@ -269,6 +273,22 @@ net spindle-pid-out => hm2_7i96s.0.pwmgen.01.value
 # ---Setup spindle at speed signals---
 
 setp spindle.0.at-speed true
+
+net spindle-on <= spindle.0.on
+net spindle-fwd <= spindle.0.forward
+net spindle-rev <= spindle.0.reverse
+
+net spindle-on => and2.0.in0
+net spindle-fwd => and2.0.in1
+net pin00-dumb <= and2.0.out
+net pin00-dumb => hm2_7i96s.0.ssr.00.out-00
+
+net spindle-on => and2.1.in0
+net spindle-rev => and2.1.in1
+net pin01-dumb <= and2.1.out
+net pin01-dumb => hm2_7i96s.0.ssr.00.out-01
+
+#setp hm2_7i96s.0.ssr.00.out-00 true
 
 
 #******************************
